@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.AbstractUseCase;
-import com.api_point_manager.api.infra.persistence.entities.Project;
+import com.api_point_manager.api.infra.controllers.dtos.project.ReadProjectDto;
 
-public class GetAllProjects extends AbstractUseCase<Void, List<Project>> {
+public class GetAllProjects extends AbstractUseCase<Void, List<ReadProjectDto>> {
 
     private final ProjectGateway projectGateway;
 
@@ -15,7 +15,7 @@ public class GetAllProjects extends AbstractUseCase<Void, List<Project>> {
     }
 
     @Override
-    public List<Project> execute() {
+    public List<ReadProjectDto> execute() {
         return projectGateway.listProjects();
     }
 }
