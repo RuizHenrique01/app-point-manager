@@ -33,5 +33,11 @@ public class ProjectRepositoryGateway implements ProjectGateway{
         Project createdProject = this.projectRepository.save(project);
         return this.projectEntityMapper.toDto(createdProject);
     }
+
+    @Override
+    public ReadProjectDto findOneById(Long id) {
+        var project = this.projectRepository.getReferenceById(id);
+        return this.projectEntityMapper.toDto(project);
+    }
     
 }
