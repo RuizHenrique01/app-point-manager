@@ -36,4 +36,9 @@ public class Project {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public Project(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }
