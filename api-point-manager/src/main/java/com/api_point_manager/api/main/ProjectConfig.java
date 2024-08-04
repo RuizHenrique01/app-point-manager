@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.project.CreateProject;
+import com.api_point_manager.api.application.usecases.project.DeleteProject;
 import com.api_point_manager.api.application.usecases.project.FindProjectById;
 import com.api_point_manager.api.application.usecases.project.GetAllProjects;
 import com.api_point_manager.api.infra.controllers.mappers.ProjectDtoMapper;
@@ -28,6 +29,11 @@ public class ProjectConfig {
     @Bean
     FindProjectById findProjectByIdCase(ProjectGateway projectGateway){
         return new FindProjectById(projectGateway);
+    }
+
+    @Bean
+    DeleteProject deleteProjectCase(ProjectGateway projectGateway){
+        return new DeleteProject(projectGateway);
     }
 
     @Bean

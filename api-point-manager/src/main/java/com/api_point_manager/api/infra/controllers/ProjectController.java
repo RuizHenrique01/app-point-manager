@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.api_point_manager.api.application.usecases.project.CreateProject;
+import com.api_point_manager.api.application.usecases.project.DeleteProject;
 import com.api_point_manager.api.application.usecases.project.FindProjectById;
 import com.api_point_manager.api.application.usecases.project.GetAllProjects;
 import com.api_point_manager.api.infra.controllers.dtos.project.CreateProjectDto;
@@ -14,6 +15,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,17 +29,20 @@ public class ProjectController {
     private final CreateProject createProjectUseCase;
     private final FindProjectById findProjectByIdUseCase;
     private final ProjectDtoMapper projectDtoMapper;
+    private final DeleteProject deleteProject;
 
 
     public ProjectController(
         GetAllProjects getAllProjects, 
         CreateProject createProjectUseCase, 
         FindProjectById findProjectByIdUseCase, 
-        ProjectDtoMapper projectDtoMapper){
+        ProjectDtoMapper projectDtoMapper, 
+        DeleteProject deleteProject){
         this.getAllProjectsUseCase = getAllProjects;
         this.createProjectUseCase = createProjectUseCase;
         this.findProjectByIdUseCase = findProjectByIdUseCase;
         this.projectDtoMapper = projectDtoMapper;
+        this.deleteProject = deleteProject;
     }
 
     @GetMapping()
@@ -57,5 +62,10 @@ public class ProjectController {
     @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable Long id){
         return ResponseEntity.ok(this.findProjectByIdUseCase.execute(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteProject(@PathVariable Long id){
+        return ResponseEntity.ok(this.deleteProject.execute(id));
     }
 }

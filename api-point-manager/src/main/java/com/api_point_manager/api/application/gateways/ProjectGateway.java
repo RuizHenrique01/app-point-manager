@@ -8,4 +8,6 @@ public interface ProjectGateway {
     List<Project> listProjects();
     Project createProject(Project data);
     Project findOneById(Long id);
+    Project updateProject(Project data);
+    void deleteProject(Long id);
 }

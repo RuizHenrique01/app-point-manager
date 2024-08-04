@@ -5,11 +5,11 @@ import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.AbstractUseCase;
 import com.api_point_manager.api.domain.entities.Project;
 
-public class FindProjectById extends AbstractUseCase<Long, Project> {
+public class DeleteProject extends AbstractUseCase<Long, Project> {
 
     private final ProjectGateway projectGateway;
 
-    public FindProjectById(ProjectGateway projectGateway){
+    public DeleteProject(ProjectGateway projectGateway){
         this.projectGateway = projectGateway;
     }
 
@@ -20,6 +20,9 @@ public class FindProjectById extends AbstractUseCase<Long, Project> {
         if(project == null){
             throw new NotFoundException("Projeto não encontrado!");
         }
+        
+        this.projectGateway.deleteProject(id);
+
         return project;
     }
 }

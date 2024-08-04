@@ -42,5 +42,16 @@ public class ProjectRepositoryGateway implements ProjectGateway{
 
         return this.projectEntityMapper.toDomainObj(project.get());
     }
+
+    @Override
+    public Project updateProject(Project data) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateProject'");
+    }
+
+    @Override
+    public void deleteProject(Long id) {
+        this.projectRepository.deleteById(id);
+    }
     
 }
