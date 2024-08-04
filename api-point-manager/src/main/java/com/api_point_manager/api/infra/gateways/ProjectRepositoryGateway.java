@@ -45,8 +45,10 @@ public class ProjectRepositoryGateway implements ProjectGateway{
 
     @Override
     public Project updateProject(Project data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateProject'");
+        var project = this.projectRepository.getReferenceById(data.id());
+        project.update(data);
+        this.projectRepository.save(project);
+        return this.projectEntityMapper.toDomainObj(project);
     }
 
     @Override

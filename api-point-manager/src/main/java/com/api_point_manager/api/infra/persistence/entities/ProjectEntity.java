@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.api_point_manager.api.domain.entities.Project;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,5 +42,13 @@ public class ProjectEntity {
     public ProjectEntity(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public void update(Project data){
+        if(data.name() != null)
+            this.name = data.name();
+
+        if(data.description() != null)
+            this.description = data.description();
     }
 }

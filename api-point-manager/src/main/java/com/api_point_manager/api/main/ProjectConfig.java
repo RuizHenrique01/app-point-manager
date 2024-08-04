@@ -8,6 +8,7 @@ import com.api_point_manager.api.application.usecases.project.CreateProject;
 import com.api_point_manager.api.application.usecases.project.DeleteProject;
 import com.api_point_manager.api.application.usecases.project.FindProjectById;
 import com.api_point_manager.api.application.usecases.project.GetAllProjects;
+import com.api_point_manager.api.application.usecases.project.UpdateProject;
 import com.api_point_manager.api.infra.controllers.mappers.ProjectDtoMapper;
 import com.api_point_manager.api.infra.gateways.ProjectRepositoryGateway;
 import com.api_point_manager.api.infra.mappers.ProjectEntityMapper;
@@ -29,6 +30,11 @@ public class ProjectConfig {
     @Bean
     FindProjectById findProjectByIdCase(ProjectGateway projectGateway){
         return new FindProjectById(projectGateway);
+    }
+
+    @Bean
+    UpdateProject updateProject(ProjectGateway projectGateway){
+        return new UpdateProject(projectGateway);
     }
 
     @Bean
