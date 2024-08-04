@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Project {
+public class ProjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,7 +37,7 @@ public class Project {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public Project(String name, String description) {
+    public ProjectEntity(String name, String description) {
         this.name = name;
         this.description = description;
     }

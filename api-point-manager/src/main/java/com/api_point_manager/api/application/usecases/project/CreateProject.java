@@ -2,10 +2,9 @@ package com.api_point_manager.api.application.usecases.project;
 
 import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.AbstractUseCase;
-import com.api_point_manager.api.infra.controllers.dtos.project.CreateProjectDto;
-import com.api_point_manager.api.infra.controllers.dtos.project.ReadProjectDto;
+import com.api_point_manager.api.domain.entities.Project;
 
-public class CreateProject extends AbstractUseCase<CreateProjectDto, ReadProjectDto> {
+public class CreateProject extends AbstractUseCase<Project, Project> {
 
     private final ProjectGateway projectGateway;
 
@@ -14,7 +13,7 @@ public class CreateProject extends AbstractUseCase<CreateProjectDto, ReadProject
     }
 
     @Override
-    public ReadProjectDto execute(CreateProjectDto data) {
+    public Project execute(Project data) {
         return this.projectGateway.createProject(data);
     }
 }

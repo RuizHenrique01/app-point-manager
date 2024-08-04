@@ -8,6 +8,7 @@ import com.api_point_manager.api.application.usecases.project.CreateProject;
 import com.api_point_manager.api.application.usecases.project.FindProjectById;
 import com.api_point_manager.api.application.usecases.project.GetAllProjects;
 import com.api_point_manager.api.infra.controllers.dtos.project.CreateProjectDto;
+import com.api_point_manager.api.infra.controllers.mappers.ProjectDtoMapper;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -25,15 +26,18 @@ public class ProjectController {
     private final GetAllProjects getAllProjectsUseCase;
     private final CreateProject createProjectUseCase;
     private final FindProjectById findProjectByIdUseCase;
+    private final ProjectDtoMapper projectDtoMapper;
 
 
     public ProjectController(
         GetAllProjects getAllProjects, 
         CreateProject createProjectUseCase, 
-        FindProjectById findProjectByIdUseCase){
+        FindProjectById findProjectByIdUseCase, 
+        ProjectDtoMapper projectDtoMapper){
         this.getAllProjectsUseCase = getAllProjects;
         this.createProjectUseCase = createProjectUseCase;
         this.findProjectByIdUseCase = findProjectByIdUseCase;
+        this.projectDtoMapper = projectDtoMapper;
     }
 
     @GetMapping()
@@ -44,7 +48,8 @@ public class ProjectController {
     @PostMapping()
     @Transactional
     public ResponseEntity postMethodName(@RequestBody @Valid CreateProjectDto data, UriComponentsBuilder uriBuilder) {
-        var project = this.createProjectUseCase.execute(data);
+        var projectObj = this.projectDtoMapper.toProject(data);
+        var project = this.createProjectUseCase.execute(projectObj);
         var uri = uriBuilder.path("/project/{id}").buildAndExpand(project.id()).toUri();
         return ResponseEntity.created(uri).body(project);
     }

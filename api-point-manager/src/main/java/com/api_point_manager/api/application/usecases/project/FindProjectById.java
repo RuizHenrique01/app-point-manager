@@ -2,9 +2,9 @@ package com.api_point_manager.api.application.usecases.project;
 
 import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.AbstractUseCase;
-import com.api_point_manager.api.infra.controllers.dtos.project.ReadProjectDto;
+import com.api_point_manager.api.domain.entities.Project;
 
-public class FindProjectById extends AbstractUseCase<Long, ReadProjectDto> {
+public class FindProjectById extends AbstractUseCase<Long, Project> {
 
     private final ProjectGateway projectGateway;
 
@@ -13,7 +13,7 @@ public class FindProjectById extends AbstractUseCase<Long, ReadProjectDto> {
     }
 
     @Override
-    public ReadProjectDto execute(Long id) {
+    public Project execute(Long id) {
         return this.projectGateway.findOneById(id);
     }
 }

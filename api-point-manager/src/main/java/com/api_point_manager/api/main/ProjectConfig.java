@@ -7,6 +7,7 @@ import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.project.CreateProject;
 import com.api_point_manager.api.application.usecases.project.FindProjectById;
 import com.api_point_manager.api.application.usecases.project.GetAllProjects;
+import com.api_point_manager.api.infra.controllers.mappers.ProjectDtoMapper;
 import com.api_point_manager.api.infra.gateways.ProjectRepositoryGateway;
 import com.api_point_manager.api.infra.mappers.ProjectEntityMapper;
 import com.api_point_manager.api.infra.persistence.repositories.ProjectRepository;
@@ -37,5 +38,10 @@ public class ProjectConfig {
     @Bean
     ProjectEntityMapper projectEntityMapper(){
         return new ProjectEntityMapper();
+    }
+
+    @Bean
+    ProjectDtoMapper projectDtoMapper(){
+        return new ProjectDtoMapper();
     }
 }
