@@ -1,5 +1,6 @@
 package com.api_point_manager.api.application.usecases.project;
 
+import com.api_point_manager.api.application.exceptions.NotFoundException;
 import com.api_point_manager.api.application.gateways.ProjectGateway;
 import com.api_point_manager.api.application.usecases.AbstractUseCase;
 import com.api_point_manager.api.domain.entities.Project;
@@ -14,6 +15,11 @@ public class FindProjectById extends AbstractUseCase<Long, Project> {
 
     @Override
     public Project execute(Long id) {
-        return this.projectGateway.findOneById(id);
+        var project = this.projectGateway.findOneById(id);
+        System.out.println(project);
+        if(project == null){
+            throw new NotFoundException("Projeto não encontrado!");
+        }
+        return project;
     }
 }

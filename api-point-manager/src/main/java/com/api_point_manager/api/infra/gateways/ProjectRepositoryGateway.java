@@ -35,8 +35,12 @@ public class ProjectRepositoryGateway implements ProjectGateway{
 
     @Override
     public Project findOneById(Long id) {
-        var project = this.projectRepository.getReferenceById(id);
-        return this.projectEntityMapper.toDomainObj(project);
+        var project = this.projectRepository.findById(id);
+        
+        if(project.isEmpty())
+            return null;
+
+        return this.projectEntityMapper.toDomainObj(project.get());
     }
     
 }
