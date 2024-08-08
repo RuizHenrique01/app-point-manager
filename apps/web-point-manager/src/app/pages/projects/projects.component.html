@@ -1,0 +1,27 @@
+<div class="project-box container-md mt-5 shadow-none p-3 mb-5 bg-body-tertiary rounded">
+  <div class="d-flex justify-content-between gap-1">
+    <input type="text" class="form-control input-search" a
+    ria-label="Sizing example input"
+    aria-describedby="inputGroup-sizing-default"
+    placeholder="Pesquisar..."
+    >
+    <button type="button" class="btn btn-dark new-project-button">+ Novo Projeto</button>
+  </div>
+
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let project of listProject">
+      <tr>
+        <th scope="row">{{project.id}}</th>
+        <td>{{project.name}}</td>
+        <td>{{project.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

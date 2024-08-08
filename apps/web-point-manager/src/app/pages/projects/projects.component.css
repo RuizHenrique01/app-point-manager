@@ -1,0 +1,17 @@
+.project-box {
+  min-height: 80vh !important;
+}
+
+.input-search {
+  width: 100%;
+  max-width: 500px;
+  outline: none !important;
+}
+
+.input-search:focus{
+  outline: none !important;
+}
+
+.new-project-button {
+  min-width: 140px;
+}

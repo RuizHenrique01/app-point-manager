@@ -1,0 +1,32 @@
+{
+  "name": "api-point-manager",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/api-point-manager/src",
+  "targets": {
+    "run": {
+      "executor": "@nxrocks/nx-spring-boot:run",
+      "options": {
+        "root": "apps/api-point-manager",
+        "args": [
+          "arg1",
+          "arg2"
+        ]
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mvnw spring-boot:run",
+        "cwd": "apps/api-point-manager"
+      }
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mvnw install",
+        "cwd": "apps/api-point-manager"
+      }
+    }
+  }
+}

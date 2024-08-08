@@ -1,0 +1,49 @@
+{
+  "name": "web-point-manager",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/web-point-manager/src",
+  "targets": {
+    "run": {
+      "executor": "@nrwl/angular:ng-cli",
+      "options": {
+        "command": "ng serve",
+        "args": [
+          "--port=4200",
+          "--open"
+        ]
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/web-point-manager && npm run start"
+      }
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/web-point-manager && npm install"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:browser",
+      "options": {
+        "outputPath": "dist/apps/web-point-manager",
+        "index": "apps/web-point-manager/src/index.html",
+        "main": "apps/web-point-manager/src/main.ts",
+        "polyfills": "apps/web-point-manager/src/polyfills.ts",
+        "tsConfig": "apps/web-point-manager/tsconfig.app.json",
+        "aot": true,
+        "assets": [
+          "apps/web-point-manager/src/favicon.ico",
+          "apps/web-point-manager/src/assets"
+        ],
+        "styles": [
+          "apps/web-point-manager/src/styles.css"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}
