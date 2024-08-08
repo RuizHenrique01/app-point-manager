@@ -6,7 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "install:all": "nx run-many --parallel --target=install --projects=web-point-manager,api-point-manager",
+    "install:all": "npm install && nx run-many --parallel --target=install --projects=web-point-manager,api-point-manager",
     "start:all": "nx run-many --parallel --target=serve --projects=web-point-manager,api-point-manager",
     "start:api-point-manager": "nx run-many --parallel --target=serve --projects=api-point-manager",
     "start:web-point-manager": "nx run-many --parallel --target=serve --projects=web-point-manager"
