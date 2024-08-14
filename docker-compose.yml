@@ -1,0 +1,48 @@
+version: "3.0"
+
+services:
+  mysql-point-manager:
+    image: mysql:8.0
+    container_name: mysql-point-manager
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: point_manager_db
+      MYSQL_PASSWORD: root
+    ports:
+      - "3333:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0
+    networks:
+      - point-manager
+
+  web-point-manager:
+    build: ./apps/web-point-manager
+    image:  web-point-manager
+    container_name:  web-point-manager
+    ports:
+      - "4200:80"
+    networks:
+      - point-manager
+
+  api-point-manager:
+    build: ./apps/api-point-manager
+    image:  api-point-manager
+    container_name:  api-point-manager
+    ports:
+      - "8000:8000"
+    environment:
+      DATASOURCE_URL: jdbc:mysql://mysql-point-manager:3306/point_manager_db?allowPublicKeyRetrieval=true&useSSL=false
+      DATASOURCE_USERNAME: root
+      DATASOURCE_PASSWORD: root
+    depends_on:
+      - mysql-point-manager
+    networks:
+      - point-manager
+
+volumes:
+  db_data:
+
+networks:
+  point-manager:
+    driver: bridge
