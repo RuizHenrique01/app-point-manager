@@ -23,4 +23,8 @@ export class ProjectService {
       description: project.description
     });
   }
+
+  delete(id: number):Observable<Project>{
+    return this.http.delete<Project>(this.API + `/${id}`);
+  }
 }
