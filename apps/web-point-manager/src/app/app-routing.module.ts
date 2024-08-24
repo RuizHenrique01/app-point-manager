@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectsComponent } from './pages/projects/projects.component';
-import { CreateProjectComponent } from './pages/projects/components/create-project/create-project.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
+import { ListProjectComponent } from './projects/list-project/list-project.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'projetos',
-    component: ProjectsComponent
+    component: ListProjectComponent
   },
   {
     path: 'projetos/novo',

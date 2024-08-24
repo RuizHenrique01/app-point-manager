@@ -3,11 +3,11 @@ import { Project } from 'src/app/interfaces/project.interface';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  selector: 'app-list-project',
+  templateUrl: './list-project.component.html',
+  styleUrls: ['./list-project.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class ListProjectComponent implements OnInit {
 
   listProject: Project[] = [];
 
@@ -16,5 +16,4 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.projectService.list().subscribe(r => this.listProject = r);
   }
-
 }
