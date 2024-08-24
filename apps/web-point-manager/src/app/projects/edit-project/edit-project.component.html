@@ -1,0 +1,20 @@
+<div class="project-box container-md mt-5 shadow-none p-3 mb-5 bg-body-tertiary rounded">
+  <p class="h2">Editar Projeto</p>
+  <form [formGroup]="formProject">
+    <div class="mb-3 mt-4">
+      <label for="exampleFormControlInput1" class="form-label">Nome:</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name" required>
+      <span class="error-form" *ngIf="formProject.get('name')?.errors?.['required'] && formProject.get('name')?.touched">
+        Nome do projeto é obrigatório!
+      </span>
+    </div>
+    <div class="mb-4">
+      <label for="exampleFormControlTextarea1" class="form-label">Descrição:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="description"></textarea>
+    </div>
+    <div class="d-flex gap-2 justify-content-end">
+      <button type="button" class="btn btn-light" routerLink="/projetos">Cancelar</button>
+      <button type="submit" class="btn btn-dark" (click)="editProject()">Salvar</button>
+    </div>
+  </form>
+</div>

@@ -27,4 +27,15 @@ export class ProjectService {
   delete(id: number):Observable<Project>{
     return this.http.delete<Project>(this.API + `/${id}`);
   }
+
+  get(id: number):Observable<Project>{
+    return this.http.get<Project>(this.API + `/${id}`);
+  }
+
+  edit(id: number, project: Project):Observable<Project>{
+    return this.http.put<Project>(this.API + `/${id}`, {
+      name: project.name,
+      description: project.description
+    });
+  }
 }
