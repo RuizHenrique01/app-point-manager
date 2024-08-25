@@ -15,3 +15,7 @@
 .new-project-button {
   min-width: 140px;
 }
+
+.action-button:hover{
+  cursor: pointer;
+}
