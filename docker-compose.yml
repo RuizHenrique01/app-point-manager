@@ -11,6 +11,7 @@ services:
     ports:
       - "3333:3306"
     volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
       - db_data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0
     networks:
