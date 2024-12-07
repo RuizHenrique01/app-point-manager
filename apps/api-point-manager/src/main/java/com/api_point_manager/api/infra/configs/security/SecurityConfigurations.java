@@ -55,13 +55,14 @@ public class SecurityConfigurations {
     }
 
     private class UnauthorizedHandler implements AuthenticationEntryPoint {
-    
+
         @Override
         public void commence(HttpServletRequest request, HttpServletResponse response,
                 AuthenticationException authException)
                 throws IOException, ServletException {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.setStatus(401);
+            response.getWriter().print("{ \"message\": \"Token de acesso invalido ou expirado.\" }");
         }
     }
 }
-
