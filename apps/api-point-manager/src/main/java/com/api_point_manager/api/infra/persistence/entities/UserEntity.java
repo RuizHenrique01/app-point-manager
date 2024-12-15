@@ -10,6 +10,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.api_point_manager.api.domain.entities.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,6 +50,11 @@ public class UserEntity implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public void update(User user){
+        this.name = user.name();
+        this.username = user.username();
     }
 
     @Override

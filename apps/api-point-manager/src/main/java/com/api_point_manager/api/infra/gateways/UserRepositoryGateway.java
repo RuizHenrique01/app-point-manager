@@ -44,19 +44,24 @@ public class UserRepositoryGateway implements UserGateway {
 
     @Override
     public User updateUser(User data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+        var user = this.userRepository.getReferenceById(data.id());
+        user.update(data);
+        this.userRepository.save(user);
+        return this.userEntityMapper.toDomainObj(user);
     }
 
     @Override
     public User findOneById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findOneById'");
+        var user = this.userRepository.findById(id);
+
+        if(user.isEmpty())
+            return null;
+        
+        return this.userEntityMapper.toDomainObj(user.get());
     }
 
     @Override
     public void deleteUser(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        this.userRepository.deleteById(id);
     }
 }
