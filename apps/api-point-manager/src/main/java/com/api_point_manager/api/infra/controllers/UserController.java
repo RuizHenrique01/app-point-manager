@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api_point_manager.api.application.usecases.user.CreateUser;
 import com.api_point_manager.api.application.usecases.user.GetUser;
 import com.api_point_manager.api.application.usecases.user.LoginUser;
+import com.api_point_manager.api.application.usecases.user.UpdateUser;
 import com.api_point_manager.api.domain.common.DataJWT;
 import com.api_point_manager.api.domain.entities.User;
 import com.api_point_manager.api.infra.controllers.dtos.user.CreateUserDto;
 import com.api_point_manager.api.infra.controllers.dtos.user.LoginUserDto;
+import com.api_point_manager.api.infra.controllers.dtos.user.UpdateUserDto;
 import com.api_point_manager.api.infra.controllers.mappers.UserDtoMapper;
 import com.api_point_manager.api.infra.mappers.UserEntityMapper;
 import com.api_point_manager.api.infra.persistence.entities.UserEntity;
@@ -29,6 +32,7 @@ public class UserController {
     private final CreateUser createUserUseCase;
     private final GetUser getUserUseCase;
     private final LoginUser loginUserUseCase;
+    private final UpdateUser updateUserUseCase;
     private final UserDtoMapper userDtoMapper;
     private final UserEntityMapper userEntityMapper;
 
@@ -37,13 +41,15 @@ public class UserController {
         UserDtoMapper userDtoMapper, 
         LoginUser loginUserUseCase,
         GetUser getUserUseCase,
-        UserEntityMapper userEntityMapper
+        UserEntityMapper userEntityMapper,
+        UpdateUser updateUserUseCase
     ){
         this.createUserUseCase = createUserUseCase;
         this.loginUserUseCase = loginUserUseCase;
         this.userDtoMapper = userDtoMapper;
         this.getUserUseCase = getUserUseCase;
         this.userEntityMapper = userEntityMapper;
+        this.updateUserUseCase = updateUserUseCase;
     }
 
     @PostMapping("/signup")
@@ -68,5 +74,15 @@ public class UserController {
         var findUser = this.getUserUseCase.execute(user.id());
 
         return ResponseEntity.ok(this.userDtoMapper.toReadUserDto(findUser));
+    }
+
+    @PutMapping("/")
+    @Transactional
+    public ResponseEntity updateUser(@RequestBody @Valid UpdateUserDto data, Authentication authentication){
+        User user = this.userEntityMapper.toDomainObj((UserEntity) authentication.getPrincipal());
+
+        this.updateUserUseCase.execute(this.userDtoMapper.toUser(user.id(), data));
+
+        return ResponseEntity.noContent().build();
     }
 }

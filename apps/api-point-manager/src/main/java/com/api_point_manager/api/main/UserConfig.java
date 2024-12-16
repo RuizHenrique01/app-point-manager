@@ -9,6 +9,7 @@ import com.api_point_manager.api.application.gateways.UserGateway;
 import com.api_point_manager.api.application.usecases.user.CreateUser;
 import com.api_point_manager.api.application.usecases.user.GetUser;
 import com.api_point_manager.api.application.usecases.user.LoginUser;
+import com.api_point_manager.api.application.usecases.user.UpdateUser;
 import com.api_point_manager.api.infra.configs.security.TokenService;
 import com.api_point_manager.api.infra.controllers.mappers.UserDtoMapper;
 import com.api_point_manager.api.infra.gateways.UserRepositoryGateway;
@@ -27,6 +28,11 @@ public class UserConfig {
     @Bean
     CreateUser createUserCase(UserGateway userGateway) {
         return new CreateUser(userGateway);
+    }
+
+    @Bean
+    UpdateUser updateUserCase(UserGateway userGateway) {
+        return new UpdateUser(userGateway);
     }
 
     @Bean

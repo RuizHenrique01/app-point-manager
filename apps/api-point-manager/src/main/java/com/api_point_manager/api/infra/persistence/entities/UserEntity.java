@@ -53,8 +53,15 @@ public class UserEntity implements UserDetails {
     }
 
     public void update(User user){
-        this.name = user.name();
-        this.username = user.username();
+        if(user.name() != null)
+            this.name = user.name();
+        
+        if(user.username() != null)
+            this.username = user.username();
+    }
+
+    public String getUsernameField() {
+        return this.username;
     }
 
     @Override

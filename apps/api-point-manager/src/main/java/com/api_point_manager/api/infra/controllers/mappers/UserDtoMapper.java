@@ -4,10 +4,15 @@ import com.api_point_manager.api.domain.entities.User;
 import com.api_point_manager.api.infra.controllers.dtos.user.CreateUserDto;
 import com.api_point_manager.api.infra.controllers.dtos.user.LoginUserDto;
 import com.api_point_manager.api.infra.controllers.dtos.user.ReadUserDto;
+import com.api_point_manager.api.infra.controllers.dtos.user.UpdateUserDto;
 
 public class UserDtoMapper {
     public User toUser(CreateUserDto data) {
         return new User(null, data.name(), data.username(), data.email(), data.password(), null, null);
+    }
+
+    public User toUser(Long id, UpdateUserDto data) {
+        return new User(id, data.name(), data.username(), null, null, null, null);
     }
 
     public User toUser(LoginUserDto data) {

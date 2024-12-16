@@ -12,7 +12,7 @@ public class UserEntityMapper {
         return new User(
             data.getId(), 
             data.getName(), 
-            data.getUsername(),
+            data.getUsernameField(),
             data.getEmail(),
             data.getPassword(),
             data.getCreatedAt(), 
