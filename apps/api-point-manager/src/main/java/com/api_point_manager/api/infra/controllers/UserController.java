@@ -2,6 +2,7 @@ package com.api_point_manager.api.infra.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api_point_manager.api.application.usecases.user.CreateUser;
+import com.api_point_manager.api.application.usecases.user.DeleteUser;
 import com.api_point_manager.api.application.usecases.user.GetUser;
 import com.api_point_manager.api.application.usecases.user.LoginUser;
 import com.api_point_manager.api.application.usecases.user.UpdateUser;
@@ -33,6 +35,7 @@ public class UserController {
     private final GetUser getUserUseCase;
     private final LoginUser loginUserUseCase;
     private final UpdateUser updateUserUseCase;
+    private final DeleteUser deleteUserUseCase;
     private final UserDtoMapper userDtoMapper;
     private final UserEntityMapper userEntityMapper;
 
@@ -42,7 +45,8 @@ public class UserController {
         LoginUser loginUserUseCase,
         GetUser getUserUseCase,
         UserEntityMapper userEntityMapper,
-        UpdateUser updateUserUseCase
+        UpdateUser updateUserUseCase,
+        DeleteUser deleteUserUseCase
     ){
         this.createUserUseCase = createUserUseCase;
         this.loginUserUseCase = loginUserUseCase;
@@ -50,6 +54,7 @@ public class UserController {
         this.getUserUseCase = getUserUseCase;
         this.userEntityMapper = userEntityMapper;
         this.updateUserUseCase = updateUserUseCase;
+        this.deleteUserUseCase = deleteUserUseCase;
     }
 
     @PostMapping("/signup")
@@ -82,6 +87,16 @@ public class UserController {
         User user = this.userEntityMapper.toDomainObj((UserEntity) authentication.getPrincipal());
 
         this.updateUserUseCase.execute(this.userDtoMapper.toUser(user.id(), data));
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/")
+    @Transactional
+    public ResponseEntity deleteUser(Authentication authentication){
+        User user = this.userEntityMapper.toDomainObj((UserEntity) authentication.getPrincipal());
+
+        this.deleteUserUseCase.execute(user.id());
 
         return ResponseEntity.noContent().build();
     }

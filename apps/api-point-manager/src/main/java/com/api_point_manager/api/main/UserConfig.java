@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 import com.api_point_manager.api.application.gateways.UserGateway;
 import com.api_point_manager.api.application.usecases.user.CreateUser;
+import com.api_point_manager.api.application.usecases.user.DeleteUser;
 import com.api_point_manager.api.application.usecases.user.GetUser;
 import com.api_point_manager.api.application.usecases.user.LoginUser;
 import com.api_point_manager.api.application.usecases.user.UpdateUser;
@@ -33,6 +34,11 @@ public class UserConfig {
     @Bean
     UpdateUser updateUserCase(UserGateway userGateway) {
         return new UpdateUser(userGateway);
+    }
+
+    @Bean
+    DeleteUser deleteUserCase(UserGateway userGateway) {
+        return new DeleteUser(userGateway);
     }
 
     @Bean
