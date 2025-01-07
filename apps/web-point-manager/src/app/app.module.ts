@@ -5,16 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListProjectComponent } from './projects/list-project/list-project.component';
-import { CreateProjectComponent } from './projects/create-project/create-project.component';
-import { EditProjectComponent } from './projects/edit-project/edit-project.component';
+import { ListProjectComponent } from './views/projects/list-project/list-project.component';
+import { CreateProjectComponent } from './views/projects/create-project/create-project.component';
+import { EditProjectComponent } from './views/projects/edit-project/edit-project.component';
+import { LoginComponent } from './views/auth/login/login.component';
+import { SignInComponent } from './views/auth/sign-in/sign-in.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateProjectComponent,
     ListProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    LoginComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,

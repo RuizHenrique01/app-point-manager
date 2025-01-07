@@ -1,0 +1,86 @@
+.signin-main{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 150px;
+}
+
+.signin-card{
+  width: 800px;
+  height: 450px;
+  display: flex;
+}
+
+.signin-box{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-box h5{
+  width: 80%;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.signin-divider {
+  height: 90%;
+  border: 1px solid black;
+  align-self: center;
+}
+
+.signin-input {
+  width: 80%;
+}
+
+.signin-input label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.signin-shape {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signin-input button {
+  min-width: 160px;
+}
+
+.signin-button-continue {
+  width: 80%;
+  display: flex;
+  font-size: 1.2rem;
+  align-self: flex-end;
+  gap: 4px;
+  justify-content: flex-end;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signin-button-back {
+  display: flex;
+  font-size: 1.2rem;
+  gap: 4px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+.signin-buttons-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signin-buttons-form button {
+  min-width: 100px;
+}
+

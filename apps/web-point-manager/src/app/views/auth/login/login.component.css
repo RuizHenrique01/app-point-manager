@@ -1,0 +1,48 @@
+.login-main{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 150px;
+}
+
+.login-card{
+  width: 800px;
+  height: 450px;
+  display: flex;
+}
+
+.login-box{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box h5{
+  width: 80%;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.login-divider {
+  height: 90%;
+  border: 1px solid black;
+  align-self: center;
+}
+
+.login-input {
+  width: 80%;
+}
+
+.login-input label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.login-input button {
+  min-width: 160px;
+
+}

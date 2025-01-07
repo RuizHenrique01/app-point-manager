@@ -1,0 +1,61 @@
+<div class="signin-main">
+  <div class="card">
+    <div class="card-body signin-card">
+      <div class="signin-box">
+        <h1>Cadastre-se</h1>
+        <h5>Falta só um passo para começar. Cadastre-se!</h5>
+      </div>
+
+      <div class="signin-divider"></div>
+
+      <form class="signin-box">
+
+        <div *ngIf="!continueProcess" class="signin-shape">
+
+          <div class="mb-3 mt-4 signin-input">
+            <label for="exampleFormControlInput1" class="form-label">Nome:</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="name" required>
+          </div>
+
+          <div class="mb-3 mt-4 signin-input">
+            <label for="exampleFormControlInput1" class="form-label">Username:</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="username" required>
+          </div>
+
+          <div class="mb-3 mt-4 signin-input">
+            <label for="exampleFormControlInput1" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="email" required>
+          </div>
+
+          <div class="mt-3 signin-button-continue" (click)="hanldeContinueProcess()">
+            Continuar
+            <i class="bi bi-arrow-right"></i>
+          </div>
+
+        </div>
+        <div *ngIf="continueProcess" class="signin-shape">
+
+          <div class="mb-3 mt-4 signin-input">
+            <label for="exampleFormControlInput1" class="form-label">Senha:</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" formControlName="password"
+              required>
+          </div>
+
+          <div class="mb-3 mt-4 signin-input">
+            <label for="exampleFormControlInput1" class="form-label">Confirmar Senha:</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" formControlName="password"
+              required>
+          </div>
+
+          <div class="signin-buttons-form mt-4">
+            <div class="signin-button-back" (click)="hanldeContinueProcess()">
+              <i class="bi bi-arrow-left"></i>
+              Voltar
+            </div>
+            <button type="submit" class="btn btn-dark btn-lg">Sign In</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
