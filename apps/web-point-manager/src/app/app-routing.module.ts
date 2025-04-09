@@ -5,31 +5,35 @@ import { ListProjectComponent } from './views/projects/list-project/list-project
 import { EditProjectComponent } from './views/projects/edit-project/edit-project.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { SignInComponent } from './views/auth/sign-in/sign-in.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: 'projetos',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'projetos',
-    component: ListProjectComponent
+    component: ListProjectComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'projetos/novo',
-    component: CreateProjectComponent
+    component: CreateProjectComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'projetos/editar/:id',
-    component: EditProjectComponent
+    component: EditProjectComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'signin',
+    path: 'signup',
     component: SignInComponent
   }
 ];

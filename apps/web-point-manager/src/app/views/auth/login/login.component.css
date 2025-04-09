@@ -46,3 +46,9 @@
   min-width: 160px;
 
 }
+
+.error-form {
+  color: red;
+  margin-top: 16px;
+}
+

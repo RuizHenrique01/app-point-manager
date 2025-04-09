@@ -8,19 +8,24 @@
 
       <div class="login-divider"></div>
 
-      <form class="login-box">
+      <form class="login-box" [formGroup]="formLogin">
         <div class="mb-3 mt-4 login-input">
           <label for="exampleFormControlInput1" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="name" required>
+          <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="email" required>
+          <span class="error-form" *ngIf="formLogin.get('email')?.errors?.['required'] && formLogin.get('email')?.touched">
+            O campo email é obrigatório!
+          </span>
         </div>
 
         <div class="mb-3 mt-4 login-input">
           <label for="exampleFormControlInput1" class="form-label">Password:</label>
-          <input type="password" class="form-control" id="exampleFormControlInput1" formControlName="name" required>
+          <input type="password" class="form-control" id="exampleFormControlInput1" formControlName="password" required>
         </div>
 
-        <button type="submit" class="btn btn-dark mt-4 btn-lg">Sign In</button>
+        <button type="submit" class="btn btn-dark mt-4 btn-lg" (click)="login()">Sign In</button>
       </form>
     </div>
   </div>
 </div>
+
+
