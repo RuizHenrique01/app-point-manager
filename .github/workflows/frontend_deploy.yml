@@ -28,10 +28,11 @@ name: Deploy to Amazon ECS
 
 on:
   push:
-    branches: [ "master" ]
-  workflow_dispatch:
-  paths:
+    branches: 
+      - master
+    paths:
       - apps/web-point-manager/**
+  workflow_dispatch:
 
 env:
   AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
