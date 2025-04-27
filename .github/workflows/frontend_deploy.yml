@@ -29,6 +29,7 @@ name: Deploy to Amazon ECS
 on:
   push:
     branches: [ "master" ]
+  workflow_dispatch:
   paths:
       - apps/web-point-manager/**
 
