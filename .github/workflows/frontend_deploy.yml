@@ -70,6 +70,17 @@ jobs:
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
+      uses: docker/build-push-action@v5
+      with:
+        push: true
+        context: ./apps/web-point-manager
+        tags: |
+          ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+        platforms: linux/arm64
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
