@@ -41,7 +41,7 @@ env:
   ECS_CLUSTER: DevCluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: point-manager # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: point-manager           # set this to the name of the container in the
+  CONTAINER_NAME: web-pointer          # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
 
 permissions:
@@ -67,16 +67,6 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-
-    # - name: Build, tag, and push image to Amazon ECR
-    #   id: build-image
-    #   uses: docker/build-push-action@v6
-    #   with:
-    #     push: true
-    #     context: ./apps/web-point-manager
-    #     tags: |
-    #       ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-    #       ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
